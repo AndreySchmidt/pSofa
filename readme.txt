@@ -3,3 +3,5 @@ sudo chown ringnull ./pSofa/ -R
 sudo chmod 777 ./pSofa/ -R
 cd pSofa && sudo ./vendor/bin/sail up
 
+sudo ./vendor/bin/sail artisan migrate
+
