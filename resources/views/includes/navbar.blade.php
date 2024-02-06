@@ -1,6 +1,6 @@
 <div class="navbar">
     <div class="logo">
-        <a href="">
+        <a href="/">
             <svg
                 width="81"
                 height="26"
@@ -29,7 +29,7 @@
                 <a href="" class="menu-item-link" data-scroll>about us</a>
             </li>
             <li class="menu-item">
-                <a href="" class="menu-item-link" data-scroll>blog</a>
+                <a href="/blog" class="menu-item-link" data-scroll>blog</a>
             </li>
             <li class="menu-item">
                 <a href="" class="menu-item-link" data-scroll>services</a>
