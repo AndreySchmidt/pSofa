@@ -12,7 +12,7 @@
         </div>
         @endforeach
 
-        <div class="row mx-auto">{{ $blogList->onEachSide(5)->links() }}</div>
+        <div class="row mx-auto">{{ $blogList->links() }}</div>
     </div>
 </div>
 

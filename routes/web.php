@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\Blog\IndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,7 +9,7 @@ Route::get('/', function () {
 
 Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function (){
     Route::get('/', \IndexController::class)->name('blog.index');
-//     Route::get('/create', \CreateController::class, 'create')->name('blog.create');
+    Route::get('/create', \CreateController::class, 'create')->name('blog.create');
 //     Route::get('/{blog}', \ShowController::class, 'show')->name('blog.show');
 //     Route::get('/{blog}/edit', \EditController::class, 'edit')->name('blog.edit');
 //     Route::patch('/{blog}', \UpdateController::class, 'update')->name('blog.update');

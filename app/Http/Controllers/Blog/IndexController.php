@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $blogList = Blog::paginate(4);
+        $blogList = Blog::paginate(2);
 
         return view('blog.index', compact('blogList'));
     }
