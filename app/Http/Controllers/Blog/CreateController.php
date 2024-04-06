@@ -10,9 +10,6 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        // $blogList = Blog::all();
-        // $tags = Tag::all();
-
-        // return view('blog.create', compact('blogList', 'tags'));
+        return view('blog.create');
     }
 }
