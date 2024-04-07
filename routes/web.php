@@ -1,7 +1,10 @@
 <?php
 
 // use App\Http\Controllers\Blog\IndexController;
+
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\PersonalAccessToken;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,10 +16,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
     Route::get('/{blog}', \ShowController::class, 'show')->name('blog.show');
     Route::get('/{blog}/edit', \EditController::class, 'edit')->name('blog.edit');
     Route::patch('/{blog}', \UpdateController::class, 'update')->name('blog.update');
-    Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete');
+    Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete')->middleware('auth:sanctum');
+    // Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete');
     Route::post('/', \StoreController::class, 'store')->name('blog.store');
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
+    Route::post('/personl-access-tokens', [\PersonalAccessTokenController::class, 'store']);
+});
 
 // Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function () {
 //     Route::get('/', \IndexController::class)->name('post.index');
