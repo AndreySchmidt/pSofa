@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 // use Laravel\Sanctum\PersonalAccessToken;
 
+// delete tokens from PersonalAccessToken tbl
+// sail artisan sanctum:prune-expired --hours=0.01
+
 class PersonalAccessTokenController extends Controller
 {
     public function store(Request $request)
