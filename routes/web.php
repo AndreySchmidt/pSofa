@@ -21,11 +21,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
     Route::post('/', \StoreController::class, 'store')->name('blog.store');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
-    Route::post('/personl-access-tokens', [\PersonalAccessTokenController::class, 'store']);
-    Route::delete('/personl-access-tokens', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
-    // Route::delete('/personl-access-tokens/{$token}', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
-});
+// Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
+//     Route::post('/personl-access-tokens', [\PersonalAccessTokenController::class, 'store']);
+//     Route::delete('/personl-access-tokens', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
+//     // Route::delete('/personl-access-tokens/{$token}', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
+// });
 
 // Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function () {
 //     Route::get('/', \IndexController::class)->name('post.index');

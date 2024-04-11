@@ -14,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return 'ssssssssssss';
-});
-
-Route::get('/api/', function () {
-    return 'aaaaaaaaaaaaaaaaaaaaa';
+Route::group(['namespace' => 'App\Http\Controllers\Sanctum'], function (){
+    Route::post('/personl-access-tokens', [\PersonalAccessTokenController::class, 'store']);
+    Route::delete('/personl-access-tokens', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
+    // Route::delete('/personl-access-tokens/{$token}', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
