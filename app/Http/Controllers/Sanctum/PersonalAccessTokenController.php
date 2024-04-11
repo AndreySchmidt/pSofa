@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+// use Laravel\Sanctum\PersonalAccessToken;
 
 class PersonalAccessTokenController extends Controller
 {
@@ -31,6 +32,15 @@ class PersonalAccessTokenController extends Controller
         // return ['token' => $user->createToken($request->device_name, ['comment:update', 'comment:delete'])->plainTextToken];
 
         return json_encode(['token' => $user->createToken($request->device_name, ['comment:update', 'comment:delete'])->plainTextToken]);
+    }
+    
+    public function destroy(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        // public function destroy(PersonalAccessToken $token, Request $request)
+        // $token->delete();
+        // $request->user()->tokens()->where('id', $tokenId)->delete();
     }
 
 }
