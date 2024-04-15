@@ -23,6 +23,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
 
 // X-XSRF-TOKEN GET -> /sanctum/csrf-cookie
 Route::post('/register', [App\Http\Controllers\Sanctum\RegisterUserController::class, 'store'])->middleware('guest');
+Route::post('/login', [App\Http\Controllers\Sanctum\LoginUserController::class, 'store'])->middleware('guest');
 
 
 // Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
