@@ -53,4 +53,11 @@ class User extends Authenticatable
             set: fn (string $password) => Hash::make($password)
         );
     }
+
+    // standart listener
+    // (on delete user (before) -> delete tokens of this user)
+    protected static function booted()
+    {
+        static::deleting(fn (User $user) => $user->tokens()->delete());
+    }
 }
