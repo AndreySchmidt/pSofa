@@ -30,7 +30,9 @@ Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::clas
 // Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::class, 'destroy'])->middleware('auth:sanctum');
 
 
-
+// profile
+Route::get('/profile', [App\Http\Controllers\Sanctum\ProfileController::class, 'show'])->middleware('auth:sanctum');
+Route::put('/profile', [App\Http\Controllers\Sanctum\ProfileController::class, 'update'])->middleware('auth:sanctum');
 
 
 // Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
