@@ -23,6 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
 
 // X-XSRF-TOKEN GET -> /sanctum/csrf-cookie
 Route::post('/register', [App\Http\Controllers\Sanctum\RegisterUserController::class, 'store'])->middleware('guest');
+Route::delete('/delete-account', [App\Http\Controllers\Sanctum\RegisterUserController::class, 'destroy'])->middleware('auth');
+
 Route::post('/login', [App\Http\Controllers\Sanctum\LoginUserController::class, 'store'])->middleware('guest');
 Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::class, 'destroy'])->middleware('auth');
 // Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::class, 'destroy'])->middleware('auth:sanctum');

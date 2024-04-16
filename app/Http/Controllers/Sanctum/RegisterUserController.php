@@ -41,7 +41,15 @@ class RegisterUserController extends Controller
     
     public function destroy(Request $request)
     {
+        $user = $request->user();
 
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $user->delete();
+
+        return response()->noContent();
     }
 
 }
