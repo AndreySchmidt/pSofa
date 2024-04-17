@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,5 +59,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected static function booted()
     {
         static::deleting(fn (User $user) => $user->tokens()->delete());
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $url = url(route('password.reset', [
+            'token' => $token,
+            'email' => $this->getEmailForPasswordReset(),
+        ], false));
+
+        // sudo ./vendor/bin/sail artisan make:notification ResetPasswordNotification
+        $this->notify(new ResetPasswordNotification($url));
     }
 }
