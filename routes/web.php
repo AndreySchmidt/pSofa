@@ -34,7 +34,7 @@ Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::clas
 Route::get('/profile', [App\Http\Controllers\Sanctum\ProfileController::class, 'show'])->middleware('auth:sanctum');
 Route::put('/profile', [App\Http\Controllers\Sanctum\ProfileController::class, 'update'])->middleware('auth:sanctum');
 Route::post('/email/verification-notification', [App\Http\Controllers\Sanctum\EmailVerificationNotificationController::class, 'store'])->middleware('auth');
-Route::get('/verify-email/{id}/{hash}', App\Http\Controllers\Sanctum\VerifyEmailController::class)->middleware('auth')->name('verification.verify');
+Route::get('/verify-email/{id}/{hash}', App\Http\Controllers\Sanctum\VerifyEmailController::class)->middleware(['auth', 'signed'])->name('verification.verify');
 
 
 // Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
