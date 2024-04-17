@@ -21,17 +21,19 @@ class NewPasswordController extends Controller
 
         $status = Password::reset(
             $request->only('token', 'email', 'password', 'password_confirmation'),
-            function ($user) use ($request) {
-                $user->forceFill([
-                    'password' => $request->password,
-                    'remember_token' => Str::random(60),
-                ])->save();
-            }
+                function ($user) use ($request) {
+                    $user->forceFill([
+                        'password' => $request->password,
+                        'remember_token' => Str::random(60),
+                    ])->save();
+                }
         );
 
         if($status != Password::PASSWORD_RESET)
         {
             throw ValidationException::withMessages([
+                // __($status) локализованная строка из директории lang чтобы она появилась выполнить
+                // sudo ./vendor/bin/sail artisan lang:publish
                 'email' => [__($status)]
             ]);
         }
