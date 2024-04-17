@@ -37,6 +37,12 @@ Route::post('/email/verification-notification', [App\Http\Controllers\Sanctum\Em
 Route::get('/verify-email/{id}/{hash}', App\Http\Controllers\Sanctum\VerifyEmailController::class)->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
 
 
+Route::post('/forgot-password', [App\Http\Controllers\Auth\PasswordResetLinkController::class, 'store'])
+    ->middleware(['guest']);
+Route::post('/reset-password', [App\Http\Controllers\Auth\NewPasswordController::class, 'store'])
+    ->middleware(['guest'])->name('password.reset');
+
+
 // Route::group(['namespace' => 'App\Http\Controllers\Sanctum', 'prefix' => 'sanctum'], function (){
 //     Route::post('/personl-access-tokens', [\PersonalAccessTokenController::class, 'store']);
 //     Route::delete('/personl-access-tokens', [\PersonalAccessTokenController::class, 'destroy'])->middleware('auth:sanctum');
