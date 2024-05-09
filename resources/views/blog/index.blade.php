@@ -2,8 +2,12 @@
 @section('content')
 
 @include('includes.header')
-
-<div style="display:flex; max-width: 900px;margin: 0 auto;padding:60px;">
+<div style="display:flex; flex-direction: column; gap:20px; max-width: 900px;margin: 0 auto;padding:60px;">
+    <form action="{{ route('blog.index') }}" method="GET">
+        <!-- @csrf -->
+        <input type="text" style="width:600px;" id="subject" name="subject" placeholder="Enter blog name" value = "{{ request('subject') ?: '' }}" />
+        <button type="submit">Ok</button>
+    </form>
     <div>
         @foreach($blogList as $blog)
         <div>

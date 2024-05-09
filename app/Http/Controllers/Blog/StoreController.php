@@ -10,12 +10,12 @@ class StoreController extends Controller
 {
     public function __invoke()
     {
-        $postItem = request()->validate([
+        $blogItem = request()->validate([
             'subject' => 'required|string',
             'description' => 'string',
         ]);
         
-        $post = Blog::create($postItem);
+        $blog = Blog::create($blogItem);
         return redirect()->route('blog.index');
     }
 }

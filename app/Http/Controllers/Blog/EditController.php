@@ -10,6 +10,7 @@ class EditController extends Controller
 {
     public function __invoke(Blog $blog)
     {
+        
         return view('blog.edit', compact('blog'));
     }
 }

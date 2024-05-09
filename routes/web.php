@@ -10,22 +10,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function (){
+// Blog
+Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
     Route::get('/', \IndexController::class)->name('blog.index');
-    Route::get('/create', \CreateController::class, 'create')->name('blog.create');
-    Route::get('/{blog}', \ShowController::class, 'show')->name('blog.show');
-    Route::get('/{blog}/edit', \EditController::class, 'edit')->name('blog.edit');
-    Route::patch('/{blog}', \UpdateController::class, 'update')->name('blog.update');
-    Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete')->middleware('auth:sanctum');
-    // Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete');
-    Route::post('/', \StoreController::class, 'store')->name('blog.store');
+    // Route::post('/search', \IndexController::class)->name('blog.search');
+    Route::get('/create', \CreateController::class)->name('blog.create');
+    Route::post('/', \StoreController::class)->name('blog.store');
+    Route::get('/{blog}', \ShowController::class)->name('blog.show');
+    Route::get('/{blog}/edit', \EditController::class)->name('blog.edit');
+    Route::patch('/{blog}', \UpdateController::class)->name('blog.update');
+    Route::delete('/{blog}', \DeleteController::class)->name('blog.delete');
 });
+
+// Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function (){
+//     Route::get('/', \IndexController::class)->name('blog.index');
+//     Route::get('/create', \CreateController::class, 'create')->name('blog.create');
+//     Route::get('/{blog}', \ShowController::class, 'show')->name('blog.show');
+//     Route::get('/{blog}/edit', \EditController::class, 'edit')->name('blog.edit');
+//     Route::patch('/{blog}', \UpdateController::class, 'update')->name('blog.update');
+//     // Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete')->middleware('auth:sanctum');
+//     Route::delete('/{blog}', \DeleteController::class, 'delete')->name('blog.delete');
+//     Route::post('/', \StoreController::class, 'store')->name('blog.store');
+// });
 
 // X-XSRF-TOKEN GET -> /sanctum/csrf-cookie
 Route::post('/register', [App\Http\Controllers\Sanctum\RegisterUserController::class, 'store'])->middleware('guest');
 Route::delete('/delete-account', [App\Http\Controllers\Sanctum\RegisterUserController::class, 'destroy'])->middleware('auth');
 
-Route::post('/login', [App\Http\Controllers\Sanctum\LoginUserController::class, 'store'])->middleware('guest');
+Route::post('/login', [App\Http\Controllers\Sanctum\LoginUserController::class, 'store'])->middleware('guest')->name('login');
 Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::class, 'destroy'])->middleware('auth');
 // Route::delete('/logout', [App\Http\Controllers\Sanctum\LoginUserController::class, 'destroy'])->middleware('auth:sanctum');
 
@@ -62,13 +74,3 @@ Route::post('/reset-password', [App\Http\Controllers\Sanctum\NewPasswordControll
 //     });
 // });
 
-    // // Post
-    // Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
-    //     Route::get('/', \IndexController::class)->name('admin.post.index');
-    //     Route::get('/create', \CreateController::class)->name('admin.post.create');
-    //     Route::post('/', \StoreController::class)->name('admin.post.store');
-    //     Route::get('/{post}', \ShowController::class)->name('admin.post.show');
-    //     Route::get('/{post}/edit', \EditController::class)->name('admin.post.edit');
-    //     Route::patch('/{post}', \UpdateController::class)->name('admin.post.update');
-    //     Route::delete('/{post}', \DeleteController::class)->name('admin.post.delete');
-    // });
